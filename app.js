@@ -27,6 +27,14 @@ var canvas = document.getElementById("canvas"),
   moveY = 0,
   redraw;
 
+    let viewWidth = $(window).width();
+
+  if(viewWidth <= 700) {
+    canvas.width = 300;
+    canvas.height = 300;
+    resizeCanvas();
+  }
+
 function isTouchDevice() {
   return typeof window.ontouchstart !== "undefined";
 }
