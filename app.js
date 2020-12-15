@@ -5,7 +5,7 @@ var canvas = document.getElementById("canvas"),
   imageHeight,
   scaling = false,
   scale = 1,
-  ratio = 1,
+  //ratio = 1,
   maxScale,
   scaleFactor = 1.1,
   scaleDown = false,
@@ -96,19 +96,21 @@ function canvasDraw() {
 }
 
 function resizeCanvas() {
- // canvas.width = width;
- // canvas.height = height;
-  
+
+ // maxScale = Math.min(canvas.height/ image.height, canvas.width / image.height)
   maxScale = Math.min(image.height / canvas.height, image.width / canvas.width);
   ratio = Math.max(canvas.height / image.height, canvas.width / image.width);
+
   redraw = requestAnimationFrame(canvasDraw);
 }
 
     let imageloader = document.getElementById('imageLoader');
     imageloader.onchange = function(e) {
-        image.onload = resizeCanvas;
-        image.src = URL.createObjectURL(this.files[0]);
-    }
+      image.onload = resizeCanvas;
+       
+    
+    image.src = URL.createObjectURL(this.files[0]);
+  }
 
 /*
     POINTER EVENTS
