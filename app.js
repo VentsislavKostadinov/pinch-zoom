@@ -64,7 +64,7 @@ function scaleCanvasTouch() {
     if (scale > maxScale) scale = maxScale;
   }
 
-  //redraw = requestAnimationFrame(canvasDraw);
+  redraw = requestAnimationFrame(canvasDraw);
 
   lastDistance = distance;
 }
@@ -194,7 +194,7 @@ $("document").ready(function() {
         moveX = (position.x - $(this).offset().left - startCoords.x) * offset;
         moveY = (position.y - $(this).offset().top - startCoords.y) * offset;
 
-       // redraw = requestAnimationFrame(canvasDraw);
+        redraw = requestAnimationFrame(canvasDraw);
       } else if (scaling === true) {
         var touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
@@ -219,7 +219,7 @@ $("document").ready(function() {
         y: position.y - $(this).offset().top - startCoords.y
       };
 
-      //cancelAnimationFrame(scaleDraw);
-      //cancelAnimationFrame(redraw);
+      cancelAnimationFrame(scaleDraw);
+      cancelAnimationFrame(redraw);
     });
 });
