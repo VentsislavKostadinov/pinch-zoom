@@ -176,7 +176,7 @@ $("document").ready(function() {
   }); */
 
   $("canvas")
-    .on("mousedown touchstart", function(e) {
+    .on("touchstart", function(e) {
       var position = pointerEvents(e),
         touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
@@ -199,7 +199,7 @@ $("document").ready(function() {
         };
       }
     })
-    .on("mousemove touchmove", function(e) {
+    .on("touchmove", function(e) {
       e.preventDefault();
 
       isDragging = true;
@@ -226,7 +226,7 @@ $("document").ready(function() {
         scaleDraw = requestAnimationFrame(scaleCanvasTouch);
       }
     })
-    .on("mouseup touchend", function(e) {
+    .on("touchend", function(e) {
       var position = pointerEvents(e);
 
       canDrag = isDragging = scaling = false;
