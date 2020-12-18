@@ -178,70 +178,69 @@ $("document").ready(function() {
   }); */
 
 
-  $("canvas")
-    .on("mousedown touchstart", function(e) {
-      var position = pointerEvents(e),
-        touch = e.originalEvent.touches || e.originalEvent.changedTouches;
+  $("#myCanvas")
+  .on("touchstart", function (e) {
+      let position = pointerEvents(e),
+          touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
       if (e.type === "touchstart" && touch.length === 2) {
-        scaling = true;
+          scaling = true;
 
-        lastDistance = Math.sqrt(
-          (touch[0].clientX - touch[1].clientX) *
-            (touch[0].clientX - touch[1].clientX) +
-            (touch[0].clientY - touch[1].clientY) *
+          lastDistance = Math.sqrt(
+              (touch[0].clientX - touch[1].clientX) *
+              (touch[0].clientX - touch[1].clientX) +
+              (touch[0].clientY - touch[1].clientY) *
               (touch[0].clientY - touch[1].clientY)
-        );
+          );
       } else {
-        canDrag = true;
-        isDragging = scaling = false;
+          canDrag = true;
+          isDragging = scaling = false;
 
-        startCoords = {
-          x: position.x - $(this).offset().left - last.x,
-          y: position.y - $(this).offset().top - last.y
-        };
+          startCoords = {
+              x: position.x - $(this).offset().left - last.x,
+              y: position.y - $(this).offset().top - last.y
+          };
       }
-    
-    })
-    .on("mousemove touchmove", function(e) {
-      e.preventDefault();
 
+      drawInterval = setInterval(resizeCanvas, 100)
+  })
+  .on("touchmove", function (e) {
+      e.preventDefault();
       isDragging = true;
 
       if (isDragging && canDrag && scaling === false) {
-        var position = pointerEvents(e),
-          offset = e.type === "touchmove" ? 1.3 : 1;
+          let position = pointerEvents(e),
+              offset = e.type === "touchmove" ? 1.3 : 1;
 
-        moveX = (position.x - $(this).offset().left - startCoords.x) * offset;
-        moveY = (position.y - $(this).offset().top - startCoords.y) * offset;
+          moveX = (position.x - $(this).offset().left - startCoords.x) * offset;
+          moveY = (position.y - $(this).offset().top - startCoords.y) * offset;
 
-        redraw = requestAnimationFrame(canvasDraw);
+          redraw = requestAnimationFrame(canvasDraw);
       } else if (scaling === true) {
-        var touch = e.originalEvent.touches || e.originalEvent.changedTouches;
+          let touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
-      
-        distance = Math.sqrt(
-          (touch[0].clientX - touch[1].clientX) *
-            (touch[0].clientX - touch[1].clientX) +
-            (touch[0].clientY - touch[1].clientY) *
+
+          distance = Math.sqrt(
+              (touch[0].clientX - touch[1].clientX) *
+              (touch[0].clientX - touch[1].clientX) +
+              (touch[0].clientY - touch[1].clientY) *
               (touch[0].clientY - touch[1].clientY)
-        );
+          );
 
-        scaleDraw = requestAnimationFrame(scaleCanvasTouch);
+          scaleDraw = requestAnimationFrame(scaleCanvasTouch);
       }
-    })
-    .on("mouseup touchend", function(e) {
-      var position = pointerEvents(e);
+  })
+  .on("touchend", function (e) {
+      let position = pointerEvents(e);
 
       canDrag = isDragging = scaling = false;
 
       last = {
-        x: position.x - $(this).offset().left - startCoords.x,
-        y: position.y - $(this).offset().top - startCoords.y
+          x: position.x - $(this).offset().left - startCoords.x,
+          y: position.y - $(this).offset().top - startCoords.y
       };
 
       cancelAnimationFrame(scaleDraw);
       cancelAnimationFrame(redraw);
-    
-    });
-});
+      clearInterval(drawInterval);
+  });
