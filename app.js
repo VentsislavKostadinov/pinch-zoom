@@ -198,7 +198,7 @@ $("document").ready(function() {
           y: position.y - $(this).offset().top - last.y
         };
       }
-    })
+    }, {passive: true})
     .on("touchmove", function(e) {
       e.preventDefault();
 
@@ -225,7 +225,7 @@ $("document").ready(function() {
 
         scaleDraw = requestAnimationFrame(scaleCanvasTouch);
       }
-    })
+    }, {passive: true})
     .on("touchend", function(e) {
       var position = pointerEvents(e);
 
