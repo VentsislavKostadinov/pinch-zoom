@@ -180,7 +180,7 @@ $("document").ready(function() {
       var position = pointerEvents(e),
         touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
-      if (e.type === "touchstart" && touch.length === 2) {
+      if (e.type === "touchstart" && e.touches > 1) {
         scaling = true;
 
         lastDistance = Math.sqrt(
