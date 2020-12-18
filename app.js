@@ -64,7 +64,7 @@ function scaleCanvasTouch() {
     if (scale > maxScale) scale = maxScale;
   }
 
-  redraw = requestAnimationFrame(canvasDraw);
+  //redraw = requestAnimationFrame(canvasDraw);
 
   lastDistance = distance;
 }
@@ -158,8 +158,27 @@ $("document").ready(function() {
       });
   }
 
+  //canvasInit("https://upload.wikimedia.org/wikipedia/commons/9/98/Veil_Nebula_800x600.jpg");
+
+ /* $(".scale").on("click", function() {
+    if ($(this).data("scale") === "down") {
+      scaling = "down";
+    } else {
+      scaling = "up";
+    }
+
+    scaleDraw = requestAnimationFrame(scaleCanvas);
+
+    scale < maxScale
+      ? $('[data-scale="up"]').removeAttr("disabled")
+      : $('[data-scale="up"]').attr("disabled", "true");
+    scale >= 1
+      ? $('[data-scale="down"]').removeAttr("disabled")
+      : $('[data-scale="down"]').attr("disabled", "true");
+  }); */
+
   $("canvas")
-    .on("touchstart", function(e) {
+    .on("mousedown touchstart", function(e) {
       var position = pointerEvents(e),
         touch = e.originalEvent.touches || e.originalEvent.changedTouches;
 
@@ -182,7 +201,7 @@ $("document").ready(function() {
         };
       }
     })
-    .on("touchmove", function(e) {
+    .on("mousemove touchmove", function(e) {
       e.preventDefault();
 
       isDragging = true;
@@ -209,7 +228,7 @@ $("document").ready(function() {
         scaleDraw = requestAnimationFrame(scaleCanvasTouch);
       }
     })
-    .on("touchend", function(e) {
+    .on("mouseup touchend", function(e) {
       var position = pointerEvents(e);
 
       canDrag = isDragging = scaling = false;
