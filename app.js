@@ -64,7 +64,7 @@ function scaleCanvasTouch() {
     if (scale > maxScale) scale = maxScale;
   }
 
-  //redraw = requestAnimationFrame(canvasDraw);
+  redraw = requestAnimationFrame(canvasDraw);
 
   lastDistance = distance;
 }
