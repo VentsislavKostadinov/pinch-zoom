@@ -244,3 +244,4 @@ $("document").ready(function() {
       cancelAnimationFrame(redraw);
       clearInterval(drawInterval);
   });
+})
