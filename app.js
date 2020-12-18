@@ -177,7 +177,6 @@ $("document").ready(function() {
       : $('[data-scale="down"]').attr("disabled", "true");
   }); */
 
-  let drawInterval;
 
   $("canvas")
     .on("mousedown touchstart", function(e) {
@@ -202,7 +201,7 @@ $("document").ready(function() {
           y: position.y - $(this).offset().top - last.y
         };
       }
-      drawInterval = setInterval(resizeCanvas, 100)
+    
     })
     .on("mousemove touchmove", function(e) {
       e.preventDefault();
@@ -243,6 +242,6 @@ $("document").ready(function() {
 
       cancelAnimationFrame(scaleDraw);
       cancelAnimationFrame(redraw);
-      clearInterval(drawInterval)
+    
     });
 });
