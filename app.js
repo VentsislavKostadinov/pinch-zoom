@@ -200,7 +200,7 @@ $("document").ready(function() {
       }
     }, {passive: true})
     .on("touchmove", function(e) {
-      e.preventDefault();
+     e.preventDefault();
 
       isDragging = true;
 
